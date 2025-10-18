@@ -19,9 +19,9 @@ import { LoaderCircle } from 'lucide-vue-next';
             class="flex flex-col"
         >
             <div class="grid gap-[14px]">
-                <div class="grid gap-2">
+                <div class="flex flex-row gap-4">
                     <Input
-                        class="h-[50px] w-[400px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
+                        class="mt-[32px] h-[50px] w-[192px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
                         id="name"
                         type="text"
                         required
@@ -29,7 +29,19 @@ import { LoaderCircle } from 'lucide-vue-next';
                         :tabindex="1"
                         autocomplete="name"
                         name="name"
-                        placeholder="Full name"
+                        placeholder="First name"
+                    />
+                    <InputError :message="errors.name" />
+                    <Input
+                        class="mt-[32px] h-[50px] w-[192px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
+                        id="name"
+                        type="text"
+                        required
+                        autofocus
+                        :tabindex="1"
+                        autocomplete="name"
+                        name="name"
+                        placeholder="First name"
                     />
                     <InputError :message="errors.name" />
                 </div>
