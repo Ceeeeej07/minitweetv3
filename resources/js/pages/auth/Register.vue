@@ -1,33 +1,27 @@
 <script setup lang="ts">
 import RegisteredUserController from '@/actions/App/Http/Controllers/Auth/RegisteredUserController';
 import InputError from '@/components/InputError.vue';
-import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
-import { login } from '@/routes';
 import { Form, Head } from '@inertiajs/vue3';
 import { LoaderCircle } from 'lucide-vue-next';
 </script>
 
 <template>
-    <AuthBase
-        title="Create an account"
-        description="Enter your details below to create your account"
-    >
+    <AuthBase class="text-black" title="Sign Up with Email">
         <Head title="Register" />
 
         <Form
             v-bind="RegisteredUserController.store.form()"
             :reset-on-success="['password', 'password_confirmation']"
             v-slot="{ errors, processing }"
-            class="flex flex-col gap-6"
+            class="flex flex-col"
         >
-            <div class="grid gap-6">
+            <div class="grid gap-[14px]">
                 <div class="grid gap-2">
-                    <Label for="name">Name</Label>
                     <Input
+                        class="h-[50px] w-[400px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
                         id="name"
                         type="text"
                         required
@@ -41,8 +35,8 @@ import { LoaderCircle } from 'lucide-vue-next';
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="email">Email address</Label>
                     <Input
+                        class="h-[50px] w-[400px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
                         id="email"
                         type="email"
                         required
@@ -55,8 +49,8 @@ import { LoaderCircle } from 'lucide-vue-next';
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="password">Password</Label>
                     <Input
+                        class="h-[50px] w-[400px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
                         id="password"
                         type="password"
                         required
@@ -69,8 +63,8 @@ import { LoaderCircle } from 'lucide-vue-next';
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="password_confirmation">Confirm password</Label>
                     <Input
+                        class="h-[50px] w-[400px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
                         id="password_confirmation"
                         type="password"
                         required
@@ -81,31 +75,25 @@ import { LoaderCircle } from 'lucide-vue-next';
                     />
                     <InputError :message="errors.password_confirmation" />
                 </div>
-
-                <Button
-                    type="submit"
-                    class="mt-2 w-full"
-                    tabindex="5"
-                    :disabled="processing"
-                    data-test="register-user-button"
-                >
-                    <LoaderCircle
-                        v-if="processing"
-                        class="h-4 w-4 animate-spin"
-                    />
-                    Create account
-                </Button>
             </div>
 
-            <div class="text-center text-sm text-muted-foreground">
-                Already have an account?
-                <TextLink
-                    :href="login()"
-                    class="underline underline-offset-4"
-                    :tabindex="6"
-                    >Log in</TextLink
-                >
-            </div>
+            <Button
+                class="mt-[42px] h-[50px] w-[400px] rounded-2xl bg-black text-lg font-semibold text-white transition duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+                type="submit"
+                tabindex="5"
+                :disabled="processing"
+                data-test="register-user-button"
+            >
+                <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin" />
+                Create account
+            </Button>
         </Form>
+        <div class="mt-[14px] text-center text-sm text-muted-foreground">
+            By signing up, you agree to our Terms & Conditions.
+        </div>
+        <div class="mt-[49px] text-center text-sm text-muted-foreground">
+            Already have an account?
+            <a href="/login" class="cursor-pointer text-black"> Log in </a>
+        </div>
     </AuthBase>
 </template>
