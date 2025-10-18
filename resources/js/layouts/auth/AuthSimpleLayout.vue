@@ -17,9 +17,11 @@ defineProps<{
                     ></div>
                     <span class="sr-only">{{ title }}</span>
 
-                    <div class="space-y-2 text-center">
+                    <div class="text-center">
                         <h1 class="text-xl font-medium">{{ title }}</h1>
-                        <p class="text-center text-sm text-muted-foreground">
+                        <p
+                            class="mt-2 text-center text-sm text-muted-foreground"
+                        >
                             {{ description }}
                         </p>
                     </div>

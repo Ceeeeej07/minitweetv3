@@ -40,7 +40,7 @@ defineProps<{
             <div class="grid gap-6">
                 <div class="grid gap-2">
                     <Input
-                        class="h-[50px] w-[400px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
+                        class="mt-[32px] h-[50px] w-[400px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
                         id="email"
                         type="email"
                         name="email"
