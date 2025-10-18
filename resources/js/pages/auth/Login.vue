@@ -2,9 +2,7 @@
 import InputError from '@/components/InputError.vue';
 import TextLink from '@/components/TextLink.vue';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import { register } from '@/routes';
 import { store } from '@/routes/login';
@@ -20,8 +18,9 @@ defineProps<{
 
 <template>
     <AuthBase
-        title="Log in to your account"
-        description="Enter your email and password below to log in"
+        class="text-black"
+        title="Welcome to MiniTweet"
+        description="Connect with friends in 20 characters or less"
     >
         <Head title="Log in" />
 
@@ -36,12 +35,12 @@ defineProps<{
             v-bind="store.form()"
             :reset-on-success="['password']"
             v-slot="{ errors, processing }"
-            class="flex flex-col gap-6"
+            class="flex flex-col"
         >
             <div class="grid gap-6">
                 <div class="grid gap-2">
-                    <Label for="email">Email address</Label>
                     <Input
+                        class="h-[50px] w-[400px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
                         id="email"
                         type="email"
                         name="email"
@@ -56,7 +55,6 @@ defineProps<{
 
                 <div class="grid gap-2">
                     <div class="flex items-center justify-between">
-                        <Label for="password">Password</Label>
                         <TextLink
                             v-if="canResetPassword"
                             :href="request()"
@@ -67,6 +65,7 @@ defineProps<{
                         </TextLink>
                     </div>
                     <Input
+                        class="h-[50px] w-[400px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
                         id="password"
                         type="password"
                         name="password"
@@ -78,16 +77,9 @@ defineProps<{
                     <InputError :message="errors.password" />
                 </div>
 
-                <div class="flex items-center justify-between">
-                    <Label for="remember" class="flex items-center space-x-3">
-                        <Checkbox id="remember" name="remember" :tabindex="3" />
-                        <span>Remember me</span>
-                    </Label>
-                </div>
-
                 <Button
                     type="submit"
-                    class="mt-4 w-full"
+                    class="h-[50px] w-[400px] rounded-2xl bg-black text-lg font-semibold text-white transition duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-offset-2 focus:outline-none"
                     :tabindex="4"
                     :disabled="processing"
                     data-test="login-button"
@@ -99,10 +91,16 @@ defineProps<{
                     Log in
                 </Button>
             </div>
-
             <div class="text-center text-sm text-muted-foreground">
-                Don't have an account?
-                <TextLink :href="register()" :tabindex="5">Sign up</TextLink>
+                <Button
+                    type="button"
+                    @click="$inertia.visit(register())"
+                    class="mt-[14px] h-[50px] w-[400px] rounded-2xl border-2 border-gray-300 text-lg font-semibold text-black transition duration-200 hover:border-gray-900 hover:bg-gray-800 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+                    :tabindex="5"
+                    data-test="register-button"
+                >
+                    Create Account
+                </Button>
             </div>
         </Form>
     </AuthBase>
