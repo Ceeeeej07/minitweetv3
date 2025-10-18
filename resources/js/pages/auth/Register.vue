@@ -27,23 +27,23 @@ import { LoaderCircle } from 'lucide-vue-next';
                         required
                         autofocus
                         :tabindex="1"
-                        autocomplete="name"
-                        name="name"
+                        autocomplete="firstname"
+                        name="firstname"
                         placeholder="First name"
                     />
-                    <InputError :message="errors.name" />
+                    <InputError :message="errors.firstname" />
                     <Input
                         class="mt-[32px] h-[50px] w-[192px] rounded-2xl border-0 bg-[#12141917] text-base transition duration-200 outline-none focus:ring-2 focus:ring-black"
-                        id="name"
+                        id="surname"
                         type="text"
                         required
                         autofocus
                         :tabindex="1"
-                        autocomplete="name"
-                        name="name"
-                        placeholder="First name"
+                        autocomplete="surname"
+                        name="surname"
+                        placeholder="Surname"
                     />
-                    <InputError :message="errors.name" />
+                    <InputError :message="errors.surname" />
                 </div>
 
                 <div class="grid gap-2">
