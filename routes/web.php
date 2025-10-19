@@ -1,16 +1,29 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->name('home');
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TweetController;
 
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/', function () {
+    if (Auth::check()) {
+
+        return redirect('/twitter');
+    }
+    return redirect('/login');
+});
+
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/twitter', [TweetController::class, 'index'])->name('tweets.index');
+    Route::post('/tweets', [TweetController::class, 'store'])->name('tweets.store');
+    Route::post('/tweets/{id}/like', [TweetController::class, 'like'])->name('tweets.like');
+    Route::delete('/tweets/{id}/like', [TweetController::class, 'unlike'])->name('tweets.unlike');
+});
 
 
 require __DIR__ . '/settings.php';

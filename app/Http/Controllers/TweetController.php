@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class TweetController extends Controller
 {
-    public function tweet()
+    public function index()
     {
         $tweets = Tweet::with(['user', 'likes'])
             ->orderBy('created_at', 'desc')
@@ -28,7 +28,7 @@ class TweetController extends Controller
             });
 
         return Inertia::render('Tweet', [
-            'tweets' => $tweets,
+            'tweet' => $tweets,
         ]);
     }
 

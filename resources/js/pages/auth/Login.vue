@@ -79,7 +79,7 @@ defineProps<{
 
                 <Button
                     type="submit"
-                    class="h-[50px] w-[400px] rounded-2xl bg-black text-lg font-semibold text-white transition duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+                    class="h-[50px] w-[400px] rounded-2xl bg-black text-lg text-white transition duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-offset-2 focus:outline-none"
                     :tabindex="4"
                     :disabled="processing"
                     data-test="login-button"
@@ -95,7 +95,7 @@ defineProps<{
                 <Button
                     type="button"
                     @click="$inertia.visit(register())"
-                    class="mt-[14px] h-[50px] w-[400px] rounded-2xl border-2 border-gray-300 text-lg font-semibold text-black transition duration-200 hover:border-gray-900 hover:bg-gray-800 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+                    class="mt-[14px] h-[50px] w-[400px] rounded-2xl border-2 border-gray-300 text-lg text-black transition duration-200 hover:border-gray-900 hover:bg-gray-800 focus:ring-2 focus:ring-offset-2 focus:outline-none"
                     :tabindex="5"
                     data-test="register-button"
                 >

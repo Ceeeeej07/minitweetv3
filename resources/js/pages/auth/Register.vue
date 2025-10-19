@@ -90,7 +90,7 @@ import { LoaderCircle } from 'lucide-vue-next';
             </div>
 
             <Button
-                class="mt-[42px] h-[50px] w-[400px] rounded-2xl bg-black text-lg font-semibold text-white transition duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-offset-2 focus:outline-none"
+                class="mt-[42px] h-[50px] w-[400px] rounded-2xl bg-black text-lg text-white transition duration-200 hover:bg-gray-800 focus:ring-2 focus:ring-offset-2 focus:outline-none"
                 type="submit"
                 tabindex="5"
                 :disabled="processing"
