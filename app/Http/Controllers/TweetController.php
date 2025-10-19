@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Inertia\Inertia;
 use App\Models\Tweet;
 use Illuminate\Http\Request;
@@ -19,11 +20,13 @@ class TweetController extends Controller
                     'content' => $tweet->content,
                     'user' => [
                         'id' => $tweet->user->id,
+                        'firstname' => $tweet->user->firstname,
+                        'surname' => $tweet->user->surname,
                         'email' => $tweet->user->email,
                     ],
                     'likes_count' => $tweet->likes->count(),
                     'liked_by_user' => $tweet->likedByUser(),
-                    'created_at' => $tweet->created_at->format('M d, Y h:i A'),
+                    'created_at' => Carbon::parse($tweet->created_at)->diffForHumans(),
                 ];
             });
 
@@ -45,6 +48,8 @@ class TweetController extends Controller
             'content' => $tweet->content,
             'user' => [
                 'id' => $tweet->user->id,
+                'firstname' => $tweet->user->firstname,
+                'surname' => $tweet->user->surname,
                 'email' => $tweet->user->email,
             ],
             'likes_count' => 0,

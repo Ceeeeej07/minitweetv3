@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,4 +25,8 @@ class Tweet extends Model
     {
         return $this->likes()->where('user_id', auth()->id())->exists();
     }
+    // public function getCreatedAtAttribute($value)
+    // {
+    //     return Carbon::parse($value)->diffForHumans();
+    // }
 }
