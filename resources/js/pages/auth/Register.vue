@@ -55,7 +55,7 @@ import { LoaderCircle } from 'lucide-vue-next';
                         :tabindex="2"
                         autocomplete="email"
                         name="email"
-                        placeholder="email@example.com"
+                        placeholder="Email or Username"
                     />
                     <InputError :message="errors.email" />
                 </div>

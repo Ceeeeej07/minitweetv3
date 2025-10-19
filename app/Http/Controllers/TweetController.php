@@ -54,7 +54,7 @@ class TweetController extends Controller
             ],
             'likes_count' => 0,
             'liked_by_user' => false,
-            'created_at' => $tweet->created_at->format('M d, Y h:i A'),
+            'created_at' => Carbon::parse($tweet->created_at)->diffForHumans(),
         ]);
     }
 
