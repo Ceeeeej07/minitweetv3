@@ -165,7 +165,9 @@ const getUserInitials = (firstname: string) => {
                             <div class="flex">
                                 <div class="flex flex-col justify-between">
                                     <h2 class="font-semibold text-gray-800">
-                                        {{ tweet.user.firstname }}
+                                        {{ tweet.user.firstname }}&nbsp;{{
+                                            tweet.user.surname
+                                        }}
                                     </h2>
                                     <span class="text-sm text-gray-400">{{
                                         tweet.created_at
