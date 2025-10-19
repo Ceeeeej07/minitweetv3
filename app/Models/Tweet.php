@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Tweet extends Model
 {
-    protected $fillable = ['content'];
+    protected $fillable = ['content', 'user_id'];
 
     public function user(): BelongsTo
     {
@@ -20,9 +20,8 @@ class Tweet extends Model
         return $this->hasMany(TweetLike::class);
     }
 
-    public function likedByUser($userId = null)
+    public function likedByUser()
     {
-        $userId = $userId ?? auth()->id();
-        return $this->likes()->where('user_id', $userId)->exists();
+        return $this->likes()->where('user_id', auth()->id())->exists();
     }
 }

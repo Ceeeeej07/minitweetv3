@@ -19,7 +19,7 @@ class TweetController extends Controller
                     'content' => $tweet->content,
                     'user' => [
                         'id' => $tweet->user->id,
-                        'name' => $tweet->user->name,
+                        'email' => $tweet->user->email,
                     ],
                     'likes_count' => $tweet->likes->count(),
                     'liked_by_user' => $tweet->likedByUser(),
@@ -28,7 +28,7 @@ class TweetController extends Controller
             });
 
         return Inertia::render('Tweet', [
-            'tweet' => $tweets,
+            'tweets' => $tweets,
         ]);
     }
 
@@ -45,7 +45,7 @@ class TweetController extends Controller
             'content' => $tweet->content,
             'user' => [
                 'id' => $tweet->user->id,
-                'name' => $tweet->user->name,
+                'email' => $tweet->user->email,
             ],
             'likes_count' => 0,
             'liked_by_user' => false,
@@ -62,14 +62,25 @@ class TweetController extends Controller
             $tweet->likes()->create(['user_id' => $userId]);
         }
 
-        return response()->json(['likes_count' => $tweet->likes->count()]);
+        return response()->json([
+            'likes_count' => $tweet->likes()->count(),
+            'liked_by_user' => true,
+        ]);
     }
 
     public function unlike($id)
     {
         $tweet = Tweet::findOrFail($id);
-        $tweet->likes()->where('user_id', auth()->id())->delete();
+        $userId = auth()->id();
 
-        return response()->json(['likes_count' => $tweet->likes->count()]);
+        $tweet->likes()->where('user_id', $userId)->delete();
+
+        // Recount after deletion
+        $likesCount = $tweet->likes()->count();
+
+        return response()->json([
+            'likes_count' => $likesCount,
+            'liked_by_user' => false,
+        ]);
     }
 }
