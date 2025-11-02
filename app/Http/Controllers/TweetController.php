@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Inertia\Inertia;
-use App\Services\TweetService;
 use App\Http\Requests\CreateTweetRequest;
+use App\Services\TweetService;
+use Inertia\Inertia;
 
 class TweetController extends Controller
 {

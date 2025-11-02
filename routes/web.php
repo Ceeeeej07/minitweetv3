@@ -1,9 +1,9 @@
 <?php
 
-use Inertia\Inertia;
+use App\Http\Controllers\TweetController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TweetController;
+use Inertia\Inertia;
 
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
@@ -14,9 +14,9 @@ Route::get('/', function () {
 
         return redirect('/twitter');
     }
+
     return redirect('/login');
 });
-
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/twitter', [TweetController::class, 'index'])->name('tweets.index');
@@ -25,6 +25,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/tweets/{id}/like', [TweetController::class, 'unlike'])->name('tweets.unlike');
 });
 
-
-require __DIR__ . '/settings.php';
-require __DIR__ . '/auth.php';
+require __DIR__.'/settings.php';
+require __DIR__.'/auth.php';

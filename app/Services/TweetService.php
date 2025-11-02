@@ -2,12 +2,11 @@
 
 namespace App\Services;
 
+use App\DTOs\CreateTweetDTO;
 use App\DTOs\TweetDTO;
 use App\DTOs\UserDTO;
-use App\DTOs\CreateTweetDTO;
 use App\Models\Tweet;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class TweetService
 {
@@ -26,7 +25,7 @@ class TweetService
     {
         $tweet = Tweet::create([
             'content' => $dto->content,
-            'user_id' => $dto->userId
+            'user_id' => $dto->userId,
         ]);
 
         $tweet->load('user');
@@ -38,7 +37,7 @@ class TweetService
     {
         $tweet = Tweet::findOrFail($tweetId);
 
-        if (!$tweet->likes()->where('user_id', $userId)->exists()) {
+        if (! $tweet->likes()->where('user_id', $userId)->exists()) {
             $tweet->likes()->create(['user_id' => $userId]);
         }
 
